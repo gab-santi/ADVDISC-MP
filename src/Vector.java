@@ -9,38 +9,55 @@ import java.util.List;
  */
 
 public class Vector {
-	private int content[]; 
+	private int dimension;
+	private double[] vector; 
 	
 	public Vector (int dimension) {
-		// to-do: initialize content
+		this.dimension = dimension;
+		vector = new double[dimension];
+		
+		//initialize to zero vector
+		for(int i = 0; i < vector.length; i++){
+			vector[i] = 0;
+		}
 	}
 	
 	public Vector (double[] array, int dimension) {
-		// to-do: initialize content
+		this.dimension = dimension;
+		vector = new double[dimension];
+		
+		//copy
+		for(int i = 0; i < vector.length; i++){
+			vector[i] = array[i];
+		}
 	}
 	
-	public static Vector scale (double scalar) {
-		Vector v = new Vector((int)scalar);
+	public Vector scale (double scalar) {
+		//scale each element
+		for(int i = 0; i < vector.length; i++){
+			vector[i] *= scalar;
+		}
 		
-		// to-do: scale content
-		
-		return v;
+		return this;
 	}
 	
-	public static Vector add (Vector addend) {
-		Vector v = new Vector(addend.getContent().length);
-		
-		// to-do: add addend to content
-		
-		return v;
+	public Vector add (Vector addend) {
+		if(vector.length != addend.getVectorList().length){
+			//handle size mismatch error here
+		}else{
+			for(int i = 0; i < vector.length; i++){
+				vector[i] += addend.getVectorList()[i];
+			}
+		}
+		return this;
 	}
 	
-	public static boolean isSolvable (List<Vector> vectors, Vector contraints) {
+	public boolean isSolvable (List<Vector> vectors, Vector contraints) {
 		// to-do: check if vector is solvable by Gauss-Jordan
 		return true; // else return false
 	}
 	
-	public static Vector Gauss_Jordan (List<Vector> vectors, int dimension, Vector constraints) {
+	public Vector Gauss_Jordan (List<Vector> vectors, int dimension, Vector constraints) {
 		Vector v = new Vector (dimension);
 		
 		if (isSolvable(vectors, constraints)) {
@@ -53,7 +70,7 @@ public class Vector {
 
 	}
 	
-	public static int span (List<Vector> vectors, int dimension) {
+	public int span (List<Vector> vectors, int dimension) {
 		int span = 0;
 		
 		// to-do: count span of vector list
@@ -61,7 +78,7 @@ public class Vector {
 		return span;
 	}
 	
-	public int[] getContent () {
-		return content;
+	public double[] getVectorList () {
+		return vector;
 	}
 }
