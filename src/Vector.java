@@ -52,9 +52,11 @@ public class Vector {
 		return this;
 	}
 	
-	public boolean isSolvable (List<Vector> vectors, Vector contraints) {
-		// to-do: check if vector is solvable by Gauss-Jordan
-		return true; // else return false
+	public boolean isSolvable (List<Vector> vectors, Vector constraints) {
+		if (vectors.size() == constraints.getVectorList().length)
+			return true;
+		else
+			return false;
 	}
 	
 	public Vector Gauss_Jordan (List<Vector> vectors, int dimension, Vector constraints) {
