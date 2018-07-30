@@ -140,7 +140,19 @@ public class Vector {
 
 	}
 	
-	public int span (List<Vector> vectors, int dimension) {
+	public static int span (List<Vector> vectors, int dimension) {
+		Gauss_Jordan (vectors, dimension, new Vector(dimension));
+		
+		/*DELETE THIS BEFORE SUBMISSION*/
+		for(int counter = 0; counter < vectors.size(); counter++) {
+			String vector = "";
+			for(double d : vectors.get(counter).getVector())
+				vector += d + " ";
+			System.out.println(vector.trim() + " " + 0);
+		}
+		System.out.println("");
+		/*DELETE THIS BEFORE SUBMISSION*/
+		
 		int span = 0;
 		boolean nonzero = false;
 		

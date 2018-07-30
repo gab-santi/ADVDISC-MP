@@ -9,6 +9,7 @@ public class Main {
 		vectors.add(new Vector(new double[] {0,10,-5},3));
 		vectors.add(new Vector(new double[] {-10,10,15},3));
 		
-		Vector.Gauss_Jordan(vectors, 3, new Vector(3));
+		//Vector.Gauss_Jordan(vectors, 3, new Vector(3));
+		System.out.println(Vector.span(vectors, 3));
 	}
 }
