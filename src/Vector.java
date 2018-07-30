@@ -42,25 +42,25 @@ public class Vector {
 	}
 	
 	public Vector add (Vector addend) {
-		if(vector.length != addend.getVectorList().length){
+		if(vector.length != addend.getVector().length){
 			System.out.println("Error: Vectors are not of the same size");
 		}else{
 			for(int i = 0; i < vector.length; i++){
-				vector[i] += addend.getVectorList()[i];
+				vector[i] += addend.getVector()[i];
 			}
 		}
 		return this;
 	}
 	
-	public boolean isSolvable (List<Vector> vectors, Vector contraints) {
+	public boolean isSolvable (List<Vector> vectors, Vector constants) {
 		// to-do: check if vector is solvable by Gauss-Jordan
 		return true; // else return false
 	}
 	
-	public Vector Gauss_Jordan (List<Vector> vectors, int dimension, Vector constraints) {
+	public Vector Gauss_Jordan (List<Vector> vectors, int dimension, Vector constants) {
 		Vector v = new Vector (dimension);
 		
-		if (isSolvable(vectors, constraints)) {
+		if (isSolvable(vectors, constants)) {
 			// to-do: perform Gauss-Jordan algorithm
 			
 			
@@ -77,7 +77,7 @@ public class Vector {
 		
 		for (int i = 0; i < vectors.size(); i++) {
 			for (int j = 0; j < dimension; j++) {
-				if (vectors.get(i).getVectorList()[j] != 0) {
+				if (vectors.get(i).getVector()[j] != 0) {
 					nonzero = true;
 					break;
 				}
@@ -89,7 +89,7 @@ public class Vector {
 		return span;
 	}
 	
-	public double[] getVectorList () {
+	public double[] getVector () {
 		return vector;
 	}
 }
