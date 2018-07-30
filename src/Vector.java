@@ -43,7 +43,7 @@ public class Vector {
 	
 	public Vector add (Vector addend) {
 		if(vector.length != addend.getVectorList().length){
-			//handle size mismatch error here
+			System.out.println("Error: Vectors are not of the same size");
 		}else{
 			for(int i = 0; i < vector.length; i++){
 				vector[i] += addend.getVectorList()[i];
@@ -63,6 +63,7 @@ public class Vector {
 		if (isSolvable(vectors, constraints)) {
 			// to-do: perform Gauss-Jordan algorithm
 			
+			
 			return v;
 		} else {
 			return null;
@@ -72,8 +73,18 @@ public class Vector {
 	
 	public int span (List<Vector> vectors, int dimension) {
 		int span = 0;
+		boolean nonzero = false;
 		
-		// to-do: count span of vector list
+		for (int i = 0; i < vectors.size(); i++) {
+			for (int j = 0; j < dimension; j++) {
+				if (vectors.get(i).getVectorList()[j] != 0) {
+					nonzero = true;
+					break;
+				}
+			}
+			if (nonzero)
+				span += 1;
+		}
 		
 		return span;
 	}
