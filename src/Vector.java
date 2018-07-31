@@ -128,7 +128,6 @@ public class Vector {
 				}
 			}
 			
-			System.out.println(vectors.size());
 			/*DELETE THIS BEFORE SUBMISSION*/
 			for(int counter = 0; counter < vectors.size(); counter++) {
 				String vector = "";
@@ -147,6 +146,7 @@ public class Vector {
 				for (int n = 0; n < dimension; n++) {
 					sum += vectors.get(m).getVector()[n];
 				}
+				
 				if (sum == 0 && constants.getVector()[m] != 0)
 					return null;
 			}
