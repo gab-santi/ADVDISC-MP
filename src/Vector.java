@@ -72,17 +72,7 @@ public class Vector {
 	public static Vector Gauss_Jordan (List<Vector> vectors, int dimension, Vector constants) {
 		if (isSolvable(vectors, constants)) {
 			//4 return to step 1
-			for (int i = 0; i < vectors.size(); i++) {
-				/*DELETE THIS BEFORE SUBMISSION*/
-				for(int counter = 0; counter < vectors.size(); counter++) {
-					String vector = "";
-					for(double d : vectors.get(counter).getVector())
-						vector += d + " ";
-					System.out.println(vector.trim() + " " + constants.getVector()[counter]);
-				}
-				System.out.println("");
-				/*DELETE THIS BEFORE SUBMISSION*/
-				
+			for (int i = 0; i < vectors.size(); i++) {				
 				if (vectors.get(i).getVector().length != dimension)
 					return null;
 				
@@ -127,17 +117,7 @@ public class Vector {
 					}
 				}
 			}
-			
-			/*DELETE THIS BEFORE SUBMISSION*/
-			for(int counter = 0; counter < vectors.size(); counter++) {
-				String vector = "";
-				for(double d : vectors.get(counter).getVector())
-					vector += d + " ";
-				System.out.println(vector.trim() + " " + constants.getVector()[counter]);
-			}
-			System.out.println("");
-			/*DELETE THIS BEFORE SUBMISSION*/
-			
+						
 			int sum = 0;
 			
 			//check if valid or invalid result
@@ -160,17 +140,7 @@ public class Vector {
 	
 	public static int span (List<Vector> vectors, int dimension) {
 		Gauss_Jordan(vectors, dimension, new Vector(vectors.size()));
-		
-		/*DELETE THIS BEFORE SUBMISSION*/
-		for(int counter = 0; counter < vectors.size(); counter++) {
-			String vector = "";
-			for(double d : vectors.get(counter).getVector())
-				vector += d + " ";
-			System.out.println(vector.trim() + " ");
-		}
-		System.out.println("");
-		/*DELETE THIS BEFORE SUBMISSION*/
-		
+				
 		int span = 0;
 		boolean nonzero = false;
 		
