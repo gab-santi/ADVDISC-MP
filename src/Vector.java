@@ -136,6 +136,17 @@ public class Vector {
 			System.out.println("");
 			/*DELETE THIS BEFORE SUBMISSION*/
 			
+			int sum = 0;
+			
+			//check if valid or invalid result
+			for (int m = 0; m < vectors.size(); m++) {
+				for (int n = 0; n < dimension; n++) {
+					sum += vectors.get(m).getVector()[n];
+				}
+				if (sum == 0)
+					return null;
+			}
+		
 			return constants;
 		} else {
 			return null;
@@ -144,14 +155,14 @@ public class Vector {
 	}
 	
 	public static int span (List<Vector> vectors, int dimension) {
-		Gauss_Jordan(vectors, dimension, new Vector(dimension));
+		Gauss_Jordan(vectors, dimension, new Vector(vectors.size()));
 		
 		/*DELETE THIS BEFORE SUBMISSION*/
 		for(int counter = 0; counter < vectors.size(); counter++) {
 			String vector = "";
 			for(double d : vectors.get(counter).getVector())
 				vector += d + " ";
-			System.out.println(vector.trim() + " " + 0);
+			System.out.println(vector.trim() + " ");
 		}
 		System.out.println("");
 		/*DELETE THIS BEFORE SUBMISSION*/
