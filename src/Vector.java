@@ -92,26 +92,18 @@ public class Vector {
 				
 				//1 if matrix[i][j] == 0 swap some row below until matrix[i][j] != 0
 				while (vectors.get(i).getVector()[j] == 0) {
-					if(k == vectors.size()) {
-						if(j == vectors.get(i).getVector().length-1) {
+					if (k == vectors.size()) {
+						if (j == vectors.get(i).getVector().length-1)
 							return null;
-						}else {
+						else {
 							j++;
 							k = i;
 						}
 					}
 					
-//					if (j == vectors.get(i).getVector().length - 1) {
-//						swap(vectors, constants, i, k);
-//						j = 0;
-//						k++;
-//					}
-//					else
-//						j++;
-					
-					if(vectors.get(k).getVector()[j] != 0) {
+					if (vectors.get(k).getVector()[j] != 0) {
 						swap(vectors, constants, i, k);
-					}else
+					} else
 						k++;
 				}
 				
@@ -153,6 +145,8 @@ public class Vector {
 	
 	public static int span (List<Vector> vectors, int dimension) {
 		Gauss_Jordan(vectors, dimension, new Vector(dimension));
+		
+		/*DELETE THIS BEFORE SUBMISSION*/
 		for(int counter = 0; counter < vectors.size(); counter++) {
 			String vector = "";
 			for(double d : vectors.get(counter).getVector())
@@ -160,6 +154,7 @@ public class Vector {
 			System.out.println(vector.trim() + " " + 0);
 		}
 		System.out.println("");
+		/*DELETE THIS BEFORE SUBMISSION*/
 		
 		int span = 0;
 		boolean nonzero = false;
