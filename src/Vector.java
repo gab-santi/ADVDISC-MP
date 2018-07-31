@@ -92,16 +92,27 @@ public class Vector {
 				
 				//1 if matrix[i][j] == 0 swap some row below until matrix[i][j] != 0
 				while (vectors.get(i).getVector()[j] == 0) {
-					if(k == vectors.size())
-						return null;
-					
-					if (j == vectors.get(i).getVector().length - 1) {
-						swap(vectors, constants, i, k);
-						j = 0;
-						k++;
+					if(k == vectors.size()) {
+						if(j == vectors.get(i).getVector().length - 1)
+							return null;
+						else {
+							j++;
+							k=i;
+						}
 					}
-					else
-						j++;
+					
+//					if (j == vectors.get(i).getVector().length - 1) {
+//						swap(vectors, constants, i, k);
+//						j = 0;
+//						k++;
+//					}
+//					else
+//						j++;
+					
+					if(vectors.get(k).getVector()[j] != 0) {
+						swap(vectors, constants, i, k);
+					}else
+						k++;
 				}
 				
 				//2 Divide the ith row by matrix[i][j] to make pivot value = 1
