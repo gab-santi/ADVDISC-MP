@@ -121,7 +121,6 @@ public class Vector {
 			int sum = 0;
 			
 			//check if valid or invalid result
-			System.out.println("");
 			for (int m = 0; m < vectors.size(); m++) {
 				sum = 0;
 				for (int n = 0; n < dimension; n++) {
