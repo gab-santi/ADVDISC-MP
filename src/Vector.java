@@ -73,7 +73,6 @@ public class Vector {
 		if (isSolvable(vectors, constants)) {
 			//4 return to step 1
 			for (int i = 0; i < vectors.size(); i++) {
-				
 				/*DELETE THIS BEFORE SUBMISSION*/
 				for(int counter = 0; counter < vectors.size(); counter++) {
 					String vector = "";
@@ -93,9 +92,9 @@ public class Vector {
 				//1 if matrix[i][j] == 0 swap some row below until matrix[i][j] != 0
 				while (vectors.get(i).getVector()[j] == 0) {
 					if (k == vectors.size()) {
-						if (j == vectors.get(i).getVector().length-1)
-							return null;
-						else {
+						if (j == vectors.get(i).getVector().length-1){
+							break;
+						}else {
 							j++;
 							k = i;
 						}
@@ -107,25 +106,29 @@ public class Vector {
 						k++;
 				}
 				
-				//2 Divide the ith row by matrix[i][j] to make pivot value = 1
-				pivot = vectors.get(i).getVector()[j];
-				vectors.get(i).scale(1 / pivot);
-				constants.getVector()[i] *= 1 / pivot;
 				
-				//3 Make values in jth column 0 by using elementary row operations
-				for (int l = 0; l < vectors.size(); l++) {
-					if (l != i && vectors.get(l).getVector()[l] != 0) {
-						Vector scaledVector = new Vector(vectors.get(i).getVector(), vectors.get(i).getDimension());
-						double scalar = vectors.get(l).getVector()[j] * -1;
-						
-						scaledVector.scale(scalar);
-						vectors.get(l).add(scaledVector);
-						
-						constants.getVector()[l] += constants.getVector()[i] * scalar;
-					}	
+				//2 Divide the ith row by matrix[i][j] to make pivot value = 1
+				if(vectors.get(i).getVector()[j] != 0){
+					pivot = vectors.get(i).getVector()[j];
+					vectors.get(i).scale(1 / pivot);
+					constants.getVector()[i] *= 1 / pivot;
+					
+					//3 Make values in jth column 0 by using elementary row operations
+					for (int l = 0; l < vectors.size(); l++) {
+						if (l != i && vectors.get(l).getVector()[l] != 0) {
+							Vector scaledVector = new Vector(vectors.get(i).getVector(), vectors.get(i).getDimension());
+							double scalar = vectors.get(l).getVector()[j] * -1;
+							
+							scaledVector.scale(scalar);
+							vectors.get(l).add(scaledVector);
+							
+							constants.getVector()[l] += constants.getVector()[i] * scalar;
+						}	
+					}
 				}
 			}
 			
+			System.out.println(vectors.size());
 			/*DELETE THIS BEFORE SUBMISSION*/
 			for(int counter = 0; counter < vectors.size(); counter++) {
 				String vector = "";
@@ -139,11 +142,12 @@ public class Vector {
 			int sum = 0;
 			
 			//check if valid or invalid result
+			System.out.println("");
 			for (int m = 0; m < vectors.size(); m++) {
 				for (int n = 0; n < dimension; n++) {
 					sum += vectors.get(m).getVector()[n];
 				}
-				if (sum == 0)
+				if (sum == 0 && constants.getVector()[m] != 0)
 					return null;
 			}
 		
