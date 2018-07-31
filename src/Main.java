@@ -15,7 +15,7 @@ public class Main {
 		vectors.add(new Vector(new double[] {1,3,5,7},4));	
 		vectors.add(new Vector(new double[] {1,0,-1,-2},4));	
 		
-		Vector constants = Vector.Gauss_Jordan(vectors, 3, new Vector(new double[] {5,11,-6},3));
+		Vector constants = Vector.Gauss_Jordan(vectors, 4, new Vector(new double[] {5,11,-6},3));
 		
 		for (double d : constants.getVector())
 			System.out.print(d + " ");

@@ -143,10 +143,10 @@ public class Vector {
 			//check if valid or invalid result
 			System.out.println("");
 			for (int m = 0; m < vectors.size(); m++) {
+				sum = 0;
 				for (int n = 0; n < dimension; n++) {
 					sum += vectors.get(m).getVector()[n];
 				}
-				
 				if (sum == 0 && constants.getVector()[m] != 0)
 					return null;
 			}
