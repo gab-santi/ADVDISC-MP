@@ -92,16 +92,27 @@ public class Vector {
 				
 				//1 if matrix[i][j] == 0 swap some row below until matrix[i][j] != 0
 				while (vectors.get(i).getVector()[j] == 0) {
-					if(k == vectors.size())
-						return null;
-					
-					if (j == vectors.get(i).getVector().length - 1) {
-						swap(vectors, constants, i, k);
-						j = 0;
-						k++;
+					if(k == vectors.size()) {
+						if(j == vectors.get(i).getVector().length-1) {
+							return null;
+						}else {
+							j++;
+							k = i;
+						}
 					}
-					else
-						j++;
+					
+//					if (j == vectors.get(i).getVector().length - 1) {
+//						swap(vectors, constants, i, k);
+//						j = 0;
+//						k++;
+//					}
+//					else
+//						j++;
+					
+					if(vectors.get(k).getVector()[j] != 0) {
+						swap(vectors, constants, i, k);
+					}else
+						k++;
 				}
 				
 				//2 Divide the ith row by matrix[i][j] to make pivot value = 1
@@ -140,7 +151,16 @@ public class Vector {
 
 	}
 	
-	public int span (List<Vector> vectors, int dimension) {
+	public static int span (List<Vector> vectors, int dimension) {
+		Gauss_Jordan(vectors, dimension, new Vector(dimension));
+		for(int counter = 0; counter < vectors.size(); counter++) {
+			String vector = "";
+			for(double d : vectors.get(counter).getVector())
+				vector += d + " ";
+			System.out.println(vector.trim() + " " + 0);
+		}
+		System.out.println("");
+		
 		int span = 0;
 		boolean nonzero = false;
 		
@@ -151,8 +171,10 @@ public class Vector {
 					break;
 				}
 			}
-			if (nonzero)
+			if (nonzero) {
 				span += 1;
+				nonzero = false;
+			}
 		}
 		
 		return span;
