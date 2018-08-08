@@ -4,7 +4,7 @@ import java.util.List;
 public class Main {
 	public static void main(String args[]) {
 		
-		List<Vector> vectors = new ArrayList<Vector>();
+		/*List<Vector> vectors = new ArrayList<Vector>();
 		//vectors.add(new Vector(new double[] {-20,-10,10},3));
 		//vectors.add(new Vector(new double[] {0,10,-5},3));
 		//vectors.add(new Vector(new double[] {-10,10,15},3));
@@ -21,6 +21,9 @@ public class Main {
 			//System.out.print(d + " ");
 		
 		//span
-		System.out.println(Vector.span(vectors, 4));
+		System.out.println(Vector.span(vectors, 4));*/
+		
+		Matrix matrix = new Matrix(3);
+		matrix.printMatrix();
 	}
 }
