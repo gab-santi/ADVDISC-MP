@@ -4,8 +4,9 @@ import java.util.List;
 public class Main {
 	public static void main(String args[]) {
 		
-		//multiplication case#1
-		/*Vector vec1 = new Vector(new double[]{1, 4}, 2);
+		//----------MULTIPLICATION CASE #1
+		/*
+		Vector vec1 = new Vector(new double[]{1, 4}, 2);
 		Vector vec2 = new Vector(new double[]{2, 5}, 2);
 		Vector vec3 = new Vector(new double[]{3, 6}, 2);
 		List<Vector> vectors = new ArrayList<Vector>();
@@ -25,9 +26,11 @@ public class Main {
 		System.out.println("");
 		
 		Matrix matrix2 = new Matrix(vectors2, 3);
-		matrix2.printMatrix();*/
+		matrix2.printMatrix();
+		*/
 	
-		//multiplication case#2
+		//----------MULTIPLICATION CASE #2
+		/*
 		Vector vec1 = new Vector(new double[]{3}, 1);
 		Vector vec2 = new Vector(new double[]{4}, 1);
 		Vector vec3 = new Vector(new double[]{2}, 1);
@@ -53,8 +56,38 @@ public class Main {
 		
 		Matrix matrix2 = new Matrix(vectors2, 3);
 		matrix2.printMatrix();
+		*/
+		
+		//----------INVERSE CASE #1 2x2
+		/*
+		Vector vec1 = new Vector(new double[]{1, 2}, 2);
+		Vector vec2 = new Vector(new double[]{3, 7}, 2);
+		List<Vector> vectors = new ArrayList<Vector>();
+		vectors.add(vec1);
+		vectors.add(vec2);
+		
+		Matrix matrix = new Matrix(vectors, 2);
+		matrix.printMatrix();
+		*/
+		
+		//----------INVERSE CASE #2 3x3
+		
+		Vector vec1 = new Vector(new double[]{1, 2, 1}, 3);
+		Vector vec2 = new Vector(new double[]{2, 5, 0}, 3);
+		Vector vec3 = new Vector(new double[]{3, 3, 8}, 3);
+		List<Vector> vectors = new ArrayList<Vector>();
+		vectors.add(vec1);
+		vectors.add(vec2);
+		vectors.add(vec3);
+		
+		Matrix matrix = new Matrix(vectors, 3);
+		matrix.printMatrix();
+		
 		
 		System.out.println("\n"+"result: ");
-		matrix.times(matrix2).printMatrix();
+		
+		matrix.inverse().printMatrix();
+		
+		//matrix.times(matrix2).printMatrix();
 	}
 }

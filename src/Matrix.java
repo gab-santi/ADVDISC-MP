@@ -82,8 +82,86 @@ public class Matrix {
 	}
 	
 	public Matrix inverse () {
+		Matrix inverse = new Matrix(rows);
 		
-		return null;
+		if(rows != columns){
+			//has to be a perfect square
+			return null;
+		}else{
+			//gauss jordan elimination
+			
+			//4 return to step 1
+			for (int i = 0; i < matrix.length; i++) {
+				
+				int j = 0, k = i;
+				double pivot = 0;
+				
+				//1 if matrix[i][j] == 0 swap some row below until matrix[i][j] != 0
+				while (matrix[i].getVector()[j] == 0) {
+					if (k == matrix.length) {
+						if (j == matrix[i].getVector().length-1){
+							break;
+						}else {
+							j++;
+							k = i;
+						}
+					}
+					
+					if (matrix[k].getVector()[j] != 0) {
+						//swap here
+						Vector vector = matrix[i];
+						matrix[i] = matrix[k];
+						matrix[k] = vector;
+						
+						Vector inverseVector = inverse.getMatrix()[i];
+						inverse.getMatrix()[i] = inverse.getMatrix()[k];
+						inverse.getMatrix()[k] = inverseVector;
+					} else
+						k++;
+				}
+				
+				
+				//2 Divide the ith row by matrix[i][j] to make pivot value = 1
+				if(matrix[i].getVector()[j] != 0){
+					pivot = matrix[i].getVector()[j];
+					matrix[i].scale(1 / pivot);
+					//scale here
+					//constants.getVector()[i] *= 1 / pivot;
+					inverse.getMatrix()[i].scale(1/pivot);
+					
+					//3 Make values in jth column 0 by using elementary row operations
+					for (int l = 0; l < matrix.length; l++) {
+						if (l != i && matrix[l].getVector()[l] != 0) {
+							Vector scaledVector = new Vector(matrix[i].getVector(), matrix[i].getDimension());
+							double scalar = matrix[l].getVector()[j] * -1;
+							
+							scaledVector.scale(scalar);
+							matrix[l].add(scaledVector);
+							
+							//add here
+							//constants.getVector()[l] += constants.getVector()[i] * scalar;
+							Vector scaledInverseVector = new Vector(inverse.getMatrix()[i].getVector(), inverse.getMatrix()[i].getDimension());
+							scaledInverseVector.scale(scalar);
+							inverse.getMatrix()[l].add(scaledInverseVector);
+						}	
+					}
+				}
+			}
+			
+			for(int i = 0; i < matrix.length; i++){
+				boolean allZeros = true;
+				
+				for(int j = 0; j < matrix[i].getDimension(); j++){
+					if(matrix[i].getVector()[j] != 0)
+						allZeros = false;
+				}
+				
+				if(allZeros)
+					return null;
+			}
+		}
+		
+		return inverse;
 	}
 	
 	//just for printing
