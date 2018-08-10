@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -37,23 +38,42 @@ public class Matrix {
 	}
 	
 	public Matrix times (Matrix other) {
-		Matrix product = new Matrix(rows);
+		List<Vector> vectors = new ArrayList<Vector>();
 		
-		if(rows != other.getColumns()){
+		if(columns != other.getRows()){
 			System.out.println("mismatch");
+			return null;
 		}else{
 			for(int matrixRow = 0; matrixRow < rows; matrixRow++){
+				Vector vector = new Vector(other.getColumns());
+				
 				for(int otherCol = 0; otherCol < other.getColumns(); otherCol++){
 					double sum = 0;
 					for(int i = 0; i < columns; i++){
 						sum += matrix[matrixRow].getVector()[i] * other.getMatrix()[i].getVector()[otherCol];
 					}
-					product.getMatrix()[matrixRow].getVector()[otherCol] = sum;
+					vector.getVector()[otherCol] = sum;
 				}
+				
+				vectors.add(vector);
 			}
 		}
 		
-		return product;
+		//transpose list of vectors
+		//cause creating a new matrix with the vectors will transpose it back to the original
+		List<Vector> transposedVectors = new ArrayList<Vector>();
+		int vRow = vectors.size();
+		int vCol = vectors.get(0).getDimension();
+		
+		for(int i = 0; i < vCol; i++){
+			Vector vector = new Vector(vRow);
+			for(int j = 0; j < vRow; j++){
+				vector.getVector()[j] = vectors.get(j).getVector()[i];
+			}
+			transposedVectors.add(vector);
+		}
+		
+		return new Matrix(transposedVectors, vRow);
 	}
 	
 	public double det () {
