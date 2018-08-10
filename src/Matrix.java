@@ -26,23 +26,30 @@ public class Matrix {
 	public Matrix (List<Vector> list, int dimension) {
 		this.columns = list.size();
 		this.rows = dimension;
-		this.matrix = new Vector[this.rows];	
-		for(int i = 0; i < columns; i++){
-			for(int j = 0; j < rows; j++){
-				
+		this.matrix = new Vector[this.rows];
+		
+		for(int i = 0; i < rows; i++){
+			matrix[i] = new Vector(columns);
+			for(int j = 0; j < columns; j++){
+				matrix[i].getVector()[j] = list.get(j).getVector()[i];
 			}
 		}
 	}
 	
 	public Matrix times (Matrix other) {
-		int dimension = min(rows, columns);
-		Matrix product = new Matrix(dimension);
+		Matrix product = new Matrix(rows);
 		
-		if(columns != other.getRows() || rows != other.getColumns()){
+		if(rows != other.getColumns()){
 			System.out.println("mismatch");
 		}else{
-			for(int i = 0; i < dimension; i++){
-				
+			for(int matrixRow = 0; matrixRow < rows; matrixRow++){
+				for(int otherCol = 0; otherCol < other.getColumns(); otherCol++){
+					double sum = 0;
+					for(int i = 0; i < columns; i++){
+						sum += matrix[matrixRow].getVector()[i] * other.getMatrix()[i].getVector()[otherCol];
+					}
+					product.getMatrix()[matrixRow].getVector()[otherCol] = sum;
+				}
 			}
 		}
 		
@@ -69,11 +76,8 @@ public class Matrix {
 		}
 	}
 	
-	public int min(int a, int b){
-		if(a < b)
-			return a;
-		else
-			return b;
+	public Vector[] getMatrix(){
+		return matrix;
 	}
 	
 	public int getRows(){
