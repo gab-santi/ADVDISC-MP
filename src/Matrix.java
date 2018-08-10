@@ -24,16 +24,27 @@ public class Matrix {
 	}
 	
 	public Matrix (List<Vector> list, int dimension) {
-		this.columns = dimension;
-		this.rows = list.size();
+		this.columns = list.size();
+		this.rows = dimension;
 		this.matrix = new Vector[this.rows];	
-		for(int i = 0; i < matrix.length; i++){
-			matrix[i] = list.get(i);
+		for(int i = 0; i < columns; i++){
+			for(int j = 0; j < rows; j++){
+				
+			}
 		}
 	}
 	
 	public Matrix times (Matrix other) {
-		Matrix product = new Matrix(0);
+		int dimension = min(rows, columns);
+		Matrix product = new Matrix(dimension);
+		
+		if(columns != other.getRows() || rows != other.getColumns()){
+			System.out.println("mismatch");
+		}else{
+			for(int i = 0; i < dimension; i++){
+				
+			}
+		}
 		
 		return product;
 	}
@@ -56,6 +67,21 @@ public class Matrix {
 			}
 			System.out.println("");
 		}
+	}
+	
+	public int min(int a, int b){
+		if(a < b)
+			return a;
+		else
+			return b;
+	}
+	
+	public int getRows(){
+		return rows;
+	}
+	
+	public int getColumns(){
+		return columns;
 	}
 
 }
