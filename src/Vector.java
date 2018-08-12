@@ -166,4 +166,12 @@ public class Vector {
 	public int getDimension () {
 		return dimension;
 	}
+	
+	public boolean getZeroVector () {
+		for (int i = 0; i < vector.length; i++)
+			if (vector[i] != 0)
+				return false;
+		return true;
+	}
+	
 }

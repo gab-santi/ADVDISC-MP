@@ -77,8 +77,24 @@ public class Matrix {
 	}
 	
 	public double det () {
+		if (rows != columns)
+			return 0;
 		
-		return 0.0;
+		double det = 1, scale = 1;
+		List<Vector> temp = new ArrayList<>();
+		
+		for (int i = 0; i < matrix.length; i++) {
+			if (matrix[i].getZeroVector())
+				return 0;
+			Vector v = new Vector(matrix[i].getVector(), matrix.length);
+			temp.add(v);
+		}
+		
+		// Gauss Jordan
+		
+		// find determinent
+		
+		return det;
 	}
 	
 	public Matrix inverse () {
