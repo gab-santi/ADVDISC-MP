@@ -90,7 +90,8 @@ public class Main {
 		
 		//matrix.times(matrix2).printMatrix();
 		
-		//DET
+		//----------DET CASE #1 3x3
+		/*
 		Vector vec1 = new Vector(new double[]{1, 0, 0}, 3);
 		Vector vec2 = new Vector(new double[]{0, 1, 0}, 3);
 		Vector vec3 = new Vector(new double[]{0, 0, 1}, 3);
@@ -101,6 +102,20 @@ public class Main {
 		vectors.add(vec3);
 		
 		Matrix matrix = new Matrix(vectors, 3);
+		matrix.printMatrix();
+		
+		System.out.println("\n"+"result: " + matrix.det());
+		*/
+		
+		//----------DET CASE #2 2x2
+		Vector vec1 = new Vector(new double[]{2, 3}, 2);
+		Vector vec2 = new Vector(new double[]{1, 4}, 2);
+		
+		List<Vector> vectors = new ArrayList<Vector>();
+		vectors.add(vec1);
+		vectors.add(vec2);
+		
+		Matrix matrix = new Matrix(vectors, 2);
 		matrix.printMatrix();
 		
 		System.out.println("\n"+"result: " + matrix.det());
