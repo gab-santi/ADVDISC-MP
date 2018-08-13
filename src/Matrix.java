@@ -106,10 +106,9 @@ public class Matrix {
 						j++;
 						k = i;
 					}
-				}
-				
-				if (temp.get(k).getVector()[j] != 0) {
+				}else if (temp.get(k).getVector()[j] != 0) {
 					//swap here
+					System.out.println("SWAP");
 					Vector vector = temp.get(i);
 					temp.set(i, temp.get(k));
 					temp.set(k, vector);
@@ -137,6 +136,14 @@ public class Matrix {
 						temp.get(l).add(scaledVector);
 					}	
 				}
+			}
+			
+			System.out.println("step: " + i);
+			for(int ii = 0; ii < rows; ii++){
+				for(int jj = 0; jj < columns; jj++){
+					System.out.print(temp.get(ii).getVector()[jj] + " ");
+				}
+				System.out.println("");
 			}
 		}
 		
@@ -167,9 +174,7 @@ public class Matrix {
 							j++;
 							k = i;
 						}
-					}
-					
-					if (matrix[k].getVector()[j] != 0) {
+					}else if (matrix[k].getVector()[j] != 0) {
 						//swap here
 						Vector vector = matrix[i];
 						matrix[i] = matrix[k];
@@ -221,6 +226,7 @@ public class Matrix {
 				if(allZeros)
 					return null;
 			}
+			
 		}
 		
 		return inverse;
