@@ -72,7 +72,7 @@ public class Main {
 		
 		//----------INVERSE CASE #2 3x3
 		
-		Vector vec1 = new Vector(new double[]{1, 2, 1}, 3);
+		/*Vector vec1 = new Vector(new double[]{1, 2, 1}, 3);
 		Vector vec2 = new Vector(new double[]{2, 5, 0}, 3);
 		Vector vec3 = new Vector(new double[]{3, 3, 8}, 3);
 		List<Vector> vectors = new ArrayList<Vector>();
@@ -86,8 +86,23 @@ public class Main {
 		
 		System.out.println("\n"+"result: ");
 		
-		matrix.inverse().printMatrix();
+		matrix.inverse().printMatrix();*/
 		
 		//matrix.times(matrix2).printMatrix();
+		
+		//DET
+		Vector vec1 = new Vector(new double[]{1, 0, 0}, 3);
+		Vector vec2 = new Vector(new double[]{0, 1, 0}, 3);
+		Vector vec3 = new Vector(new double[]{0, 0, 1}, 3);
+		
+		List<Vector> vectors = new ArrayList<Vector>();
+		vectors.add(vec1);
+		vectors.add(vec2);
+		vectors.add(vec3);
+		
+		Matrix matrix = new Matrix(vectors, 3);
+		matrix.printMatrix();
+		
+		System.out.println("\n"+"result: " + matrix.det());
 	}
 }

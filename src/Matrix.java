@@ -80,21 +80,67 @@ public class Matrix {
 		if (rows != columns)
 			return 0;
 		
-		double det = 1, scale = 1;
+		double det = 1;
 		List<Vector> temp = new ArrayList<>();
 		
 		for (int i = 0; i < matrix.length; i++) {
 			if (matrix[i].getZeroVector())
 				return 0;
-			Vector v = new Vector(matrix[i].getVector(), matrix.length);
+			Vector v = new Vector(matrix[i].getVector(), matrix[i].getDimension());
 			temp.add(v);
 		}
-		
 		// Gauss Jordan
 		
-		// find determinent
+		//4 return to step 1
+		for (int i = 0; i < temp.size(); i++) {
+			
+			int j = 0, k = i;
+			double pivot = 0;
+			
+			//1 if matrix[i][j] == 0 swap some row below until matrix[i][j] != 0
+			while (temp.get(i).getVector()[j] == 0) {
+				if (k == temp.size()) {
+					if (j == temp.get(i).getVector().length-1){
+						break;
+					}else {
+						j++;
+						k = i;
+					}
+				}
+				
+				if (temp.get(k).getVector()[j] != 0) {
+					//swap here
+					Vector vector = temp.get(i);
+					temp.set(i, temp.get(k));
+					temp.set(k, vector);
+					
+					det = -1 * det;
+				} else
+					k++;
+			}
+			
+			
+			//2 Divide the ith row by matrix[i][j] to make pivot value = 1
+			if(temp.get(i).getVector()[j] != 0){
+				pivot = temp.get(i).getVector()[j];
+				temp.get(i).scale(1 / pivot);
+				
+				det = det * 1 / pivot;
+				
+				//3 Make values in jth column 0 by using elementary row operations
+				for (int l = 0; l < temp.size(); l++) {
+					if (l != i && temp.get(l).getVector()[l] != 0) {
+						Vector scaledVector = new Vector(temp.get(i).getVector(), temp.get(i).getDimension());
+						double scalar = temp.get(l).getVector()[j] * -1;
+						
+						scaledVector.scale(scalar);
+						temp.get(l).add(scaledVector);
+					}	
+				}
+			}
+		}
 		
-		return det;
+        return 1 / det;
 	}
 	
 	public Matrix inverse () {
