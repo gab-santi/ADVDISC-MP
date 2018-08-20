@@ -108,6 +108,19 @@ public class Main {
 		*/
 		
 		//----------DET CASE #2 2x2
+		/*Vector vec1 = new Vector(new double[]{2, 3}, 2);
+		Vector vec2 = new Vector(new double[]{1, 4}, 2);
+		
+		List<Vector> vectors = new ArrayList<Vector>();
+		vectors.add(vec1);
+		vectors.add(vec2);
+		
+		Matrix matrix = new Matrix(vectors, 2);
+		matrix.printMatrix();
+		
+		System.out.println("\n"+"result: " + matrix.det());*/
+		
+		//----------TRANSPOSE CASE #1 2x2
 		Vector vec1 = new Vector(new double[]{2, 3}, 2);
 		Vector vec2 = new Vector(new double[]{1, 4}, 2);
 		
@@ -117,6 +130,9 @@ public class Main {
 		
 		Matrix matrix = new Matrix(vectors, 2);
 		matrix.printMatrix();
+		
+		Matrix transposeMatrix = matrix.tranpose();
+		transposeMatrix.printMatrix();
 		
 		System.out.println("\n"+"result: " + matrix.det());
 	}

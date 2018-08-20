@@ -78,7 +78,7 @@ public class Matrix {
 	
 	public double det () {
 		if (rows != columns)
-			return 0;
+			return (Double) null;
 		
 		double det = 1;
 		List<Vector> temp = new ArrayList<>();
@@ -153,7 +153,7 @@ public class Matrix {
 	public Matrix inverse () {
 		Matrix inverse = new Matrix(rows);
 		
-		if(rows != columns){
+		if(rows != columns || det() == 0){
 			//has to be a perfect square
 			return null;
 		}else{
@@ -230,6 +230,19 @@ public class Matrix {
 		}
 		
 		return inverse;
+	}
+	
+	public Matrix tranpose () {
+		List<Vector> transpose = new ArrayList<>();
+		
+		for (int i = 0; i < rows; i++) {
+			Vector vector = new Vector(columns);
+			for (int j = 0; j < columns; j++)
+					vector.getVector()[j] = matrix[i].getVector()[j];
+			transpose.add(vector);
+		}
+		
+		return new Matrix(transpose, rows);
 	}
 	
 	//just for printing
